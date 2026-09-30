@@ -1,0 +1,4 @@
+pybind11>=2.11
+setuptools>=68
+fastapi>=0.110
+uvicorn[standard]>=0.29

@@ -1,0 +1,64 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "g++: build all (no cmake)",
+            "type": "shell",
+            "command": "if not exist build mkdir build && g++ -std=c++17 -Iinclude -Wall -Wextra -g -c src/state.cpp -o build/state.o && g++ -std=c++17 -Iinclude -Wall -Wextra -g -c src/euler.cpp -o build/euler.o && g++ -std=c++17 -Iinclude -Wall -Wextra -g -c src/rk4.cpp -o build/rk4.o && g++ -std=c++17 -Iinclude -Wall -Wextra -g -c src/solver.cpp -o build/solver.o && g++ -std=c++17 -Iinclude -Wall -Wextra -g -c src/phase_line.cpp -o build/phase_line.o && g++ -std=c++17 -Iinclude -Wall -Wextra -g -c src/io.cpp -o build/io.o && g++ -std=c++17 -Iinclude -Wall -Wextra -g build/state.o build/euler.o build/rk4.o build/solver.o build/phase_line.o build/io.o apps/cli/main.cpp -o build/odelab_cli.exe && g++ -std=c++17 -Iinclude -Wall -Wextra -g build/state.o build/euler.o build/rk4.o build/solver.o build/phase_line.o build/io.o tests/test_core.cpp -o build/test_core.exe && g++ -std=c++17 -Iinclude -Wall -Wextra -g build/state.o build/euler.o build/rk4.o build/solver.o build/phase_line.o build/io.o tests/test_phase_line.cpp -o build/test_phase_line.exe",
+            "windows": {
+                "options": { "shell": { "executable": "cmd.exe", "args": ["/d", "/c"] } }
+            },
+            "group": { "kind": "build", "isDefault": true },
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "Run: odelab_cli (no cmake)",
+            "type": "shell",
+            "command": "./build/odelab_cli.exe",
+            "dependsOn": ["g++: build all (no cmake)"],
+            "problemMatcher": []
+        },
+        {
+            "label": "Run: test_core (no cmake)",
+            "type": "shell",
+            "command": "./build/test_core.exe",
+            "dependsOn": ["g++: build all (no cmake)"],
+            "problemMatcher": []
+        },
+        {
+            "label": "Run: test_phase_line (no cmake)",
+            "type": "shell",
+            "command": "./build/test_phase_line.exe",
+            "dependsOn": ["g++: build all (no cmake)"],
+            "problemMatcher": []
+        },
+        {
+            "label": "CMake: configure",
+            "type": "shell",
+            "command": "cmake -S . -B build -G \"MinGW Makefiles\" -DCMAKE_BUILD_TYPE=Debug",
+            "problemMatcher": []
+        },
+        {
+            "label": "CMake: build",
+            "type": "shell",
+            "command": "cmake --build build -j",
+            "group": { "kind": "build", "isDefault": false },
+            "dependsOn": ["CMake: configure"],
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "Run: odelab_cli",
+            "type": "shell",
+            "command": "./build/odelab_cli.exe",
+            "dependsOn": ["CMake: build"],
+            "problemMatcher": []
+        },
+        {
+            "label": "Run: all tests",
+            "type": "shell",
+            "command": "cd build && ctest --output-on-failure",
+            "dependsOn": ["CMake: build"],
+            "problemMatcher": []
+        }
+    ]
+}
