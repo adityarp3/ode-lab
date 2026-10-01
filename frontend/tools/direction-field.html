@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Direction field — odelab</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>odelab — Direction field (phase plane)</h1>
+    <nav><a href="../index.html">&larr; All tools</a></nav>
+  </header>
+  <main>
+    <div id="error-banner" class="error-banner"></div>
+    <div class="controls">
+      <div class="field">
+        <label for="exprX">dx/dt</label>
+        <input id="exprX" type="text" value="y" />
+      </div>
+      <div class="field">
+        <label for="exprY">dy/dt</label>
+        <input id="exprY" class="wide" type="text" value="mu*(1 - x^2)*y - x" />
+      </div>
+      <div class="field">
+        <label for="params">Parameters</label>
+        <input id="params" type="text" value="mu=1.5" />
+      </div>
+      <div class="field">
+        <label for="xMin">x range</label>
+        <input id="xMin" type="number" value="-4" style="width:52px" />
+      </div>
+      <div class="field">
+        <label>&nbsp;</label>
+        <input id="xMax" type="number" value="4" style="width:52px" />
+      </div>
+      <div class="field">
+        <label for="yMin">y range</label>
+        <input id="yMin" type="number" value="-4" style="width:52px" />
+      </div>
+      <div class="field">
+        <label>&nbsp;</label>
+        <input id="yMax" type="number" value="4" style="width:52px" />
+      </div>
+      <button id="plot-btn">Plot</button>
+    </div>
+    <div class="controls">
+      <div class="field">
+        <label>Click/drag mode</label>
+        <div>
+          <label><input type="radio" name="mode" value="trajectory" checked /> Drop trajectory</label>
+          &nbsp;&nbsp;
+          <label><input type="radio" name="mode" value="x-null" /> x-nullcline</label>
+          &nbsp;&nbsp;
+          <label><input type="radio" name="mode" value="y-null" /> y-nullcline</label>
+        </div>
+      </div>
+    </div>
+    <canvas id="canvas" width="800" height="500"></canvas>
+    <p class="hint">"Drop trajectory" mode: click (or drag) to start a trajectory there. Nullcline modes: click/drag to place that nullcline through your cursor.</p>
+    <div class="legend">
+      <span><span class="dot" style="background:#16a34a"></span> x-nullcline (dx/dt=0)</span>
+      <span><span class="dot" style="background:#dc2626"></span> y-nullcline (dy/dt=0)</span>
+      <span><span class="dot" style="background:#2563eb"></span> trajectory</span>
+    </div>
+  </main>
+  <script type="module" src="direction-field.js"></script>
+</body>
+</html>

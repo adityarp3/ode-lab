@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lorenz attractor — odelab</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>odelab — Lorenz attractor (3D)</h1>
+    <nav><a href="../index.html">&larr; All tools</a></nav>
+  </header>
+  <main>
+    <div id="error-banner" class="error-banner"></div>
+    <div class="controls">
+      <div class="field"><label for="sigma">sigma</label><input id="sigma" type="number" value="10" style="width:70px" /></div>
+      <div class="field"><label for="rho">rho</label><input id="rho" type="number" value="28" style="width:70px" /></div>
+      <div class="field"><label for="beta">beta</label><input id="beta" type="number" step="0.01" value="2.667" style="width:70px" /></div>
+      <div class="field"><label for="x0">x0, y0, z0</label>
+        <span>
+          <input id="x0" type="number" value="1" style="width:60px" />
+          <input id="y0" type="number" value="1" style="width:60px" />
+          <input id="z0" type="number" value="1" style="width:60px" />
+        </span>
+      </div>
+      <button id="plot-btn">Plot</button>
+    </div>
+    <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+      <div>
+        <p class="hint">x-z projection (the classic "butterfly" view)</p>
+        <canvas id="canvas-xz" width="480" height="420"></canvas>
+      </div>
+      <div>
+        <p class="hint">x-y projection</p>
+        <canvas id="canvas-xy" width="480" height="420"></canvas>
+      </div>
+    </div>
+    <p class="hint">Same RK4 solver used everywhere else in this project — just three coupled equations instead of one or two. Not interactive; this is a fixed, deterministic system to observe rather than steer.</p>
+  </main>
+  <script type="module" src="lorenz.js"></script>
+</body>
+</html>

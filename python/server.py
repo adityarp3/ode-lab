@@ -8,6 +8,8 @@ Every endpoint returns the JSON string built on the C++ side (see
 odelab::to_json in io.hpp) unmodified — Python doesn't re-parse/re-serialize
 it, just passes it through as the response body.
 """
+from pathlib import Path
+from fastapi.staticfiles import StaticFiles
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
@@ -206,3 +208,8 @@ def direction_field_slice_endpoint(req: DirectionFieldSliceRequest):
 @app.get("/api/health")
 def health():
     return {"status": "ok"}
+
+
+_FRONTEND_DIR = Path(__file__).resolve().parent.parent / "frontend"
+if _FRONTEND_DIR.is_dir():
+    app.mount("/", StaticFiles(directory=str(_FRONTEND_DIR), html=True), name="frontend")

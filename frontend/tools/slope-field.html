@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slope field — odelab</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>odelab — Slope field (t vs x)</h1>
+    <nav><a href="../index.html">&larr; All tools</a></nav>
+  </header>
+  <main>
+    <div id="error-banner" class="error-banner"></div>
+    <div class="controls">
+      <div class="field">
+        <label for="expression">dx/dt = f(t, x)</label>
+        <input id="expression" class="wide" type="text" value="t - x" />
+      </div>
+      <div class="field">
+        <label for="params">Parameters (comma-separated)</label>
+        <input id="params" class="wide" type="text" value="" />
+      </div>
+      <div class="field">
+        <label for="tMin">t min</label>
+        <input id="tMin" type="number" value="0" />
+      </div>
+      <div class="field">
+        <label for="tMax">t max</label>
+        <input id="tMax" type="number" value="5" />
+      </div>
+      <div class="field">
+        <label for="xMin">x min</label>
+        <input id="xMin" type="number" value="-3" />
+      </div>
+      <div class="field">
+        <label for="xMax">x max</label>
+        <input id="xMax" type="number" value="6" />
+      </div>
+      <button id="plot-btn">Plot</button>
+    </div>
+    <canvas id="canvas" width="800" height="420"></canvas>
+    <p class="hint">Click and drag anywhere on the field to place an isocline through that point (the curve where dx/dt equals the value at your cursor).</p>
+  </main>
+  <script type="module" src="slope-field.js"></script>
+</body>
+</html>

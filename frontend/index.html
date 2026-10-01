@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>odelab</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>odelab</h1>
+    <nav>
+      <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </header>
+  <main>
+    <p>Interactive tools for ODEs and nonlinear dynamics, backed by a C++ Euler/RK4 core. Type your own equations — every tool accepts arbitrary expressions.</p>
+    <div class="tool-grid">
+      <a class="tool-card" href="tools/phase-line.html">
+        <h2>Phase line (ẋ vs x)</h2>
+        <p>1D autonomous systems. Click to drop a particle and watch it flow to a fixed point.</p>
+      </a>
+      <a class="tool-card" href="tools/slope-field.html">
+        <h2>Slope field (t vs x)</h2>
+        <p>Non-autonomous 1D ODEs. Click/drag to place an isocline anywhere on the field.</p>
+      </a>
+      <a class="tool-card" href="tools/direction-field.html">
+        <h2>Direction field (phase plane)</h2>
+        <p>2D systems like Van der Pol and predator-prey. Click to drop a trajectory, drag nullclines.</p>
+      </a>
+      <a class="tool-card" href="tools/lorenz.html">
+        <h2>Lorenz attractor (3D)</h2>
+        <p>The classic chaotic system — same solver, three dimensions.</p>
+      </a>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phase line — odelab</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>odelab — Phase line (ẋ vs x)</h1>
+    <nav><a href="../index.html">&larr; All tools</a></nav>
+  </header>
+  <main>
+    <div id="error-banner" class="error-banner"></div>
+    <div class="controls">
+      <div class="field">
+        <label for="expression">dx/dt = f(x)</label>
+        <input id="expression" class="wide" type="text" value="r*x*(1 - x/K)" />
+      </div>
+      <div class="field">
+        <label for="params">Parameters (comma-separated)</label>
+        <input id="params" class="wide" type="text" value="r=1, K=10" />
+      </div>
+      <div class="field">
+        <label for="xMin">x min</label>
+        <input id="xMin" type="number" value="-2" />
+      </div>
+      <div class="field">
+        <label for="xMax">x max</label>
+        <input id="xMax" type="number" value="12" />
+      </div>
+      <button id="plot-btn">Plot</button>
+    </div>
+    <canvas id="canvas" width="800" height="420"></canvas>
+    <p class="hint">Click anywhere on the plot to drop a particle at that x and watch it flow toward a fixed point.</p>
+    <div class="legend">
+      <span><span class="dot" style="background:#16a34a"></span> stable</span>
+      <span><span class="dot" style="background:#dc2626"></span> unstable</span>
+      <span><span class="dot" style="background:#f59e0b"></span> semi-stable</span>
+    </div>
+  </main>
+  <script type="module" src="phase-line.js"></script>
+</body>
+</html>

@@ -3,6 +3,7 @@
 #include <cmath>
 #include <stdexcept>
 #include <functional>
+#include <cstdio>
 
 namespace odelab {
 
@@ -12,7 +13,11 @@ namespace {
 // toolchains (M_PI/M_E are POSIX/MSVC extensions, not standard C++).
 constexpr double kPi = 3.14159265358979323846;
 constexpr double kE = 2.71828182845904523536;
-
+std::string format_double(double v) {
+    char buf[64];
+    std::snprintf(buf, sizeof(buf), "%.6g", v);
+    return std::string(buf);
+}
 // ---------- Tokenizer ----------
 
 enum class TokType { Number, Ident, Plus, Minus, Star, Slash, Caret,
@@ -170,7 +175,7 @@ public:
             check_arity(1);
             double v = arg(0);
             if (v <= 0.0) {
-                throw std::runtime_error("log of non-positive number: log(" + std::to_string(v) + ")");
+                throw std::runtime_error("log of non-positive number: log(" + format_double(v) + ")");
             }
             return std::log(v);
         }
@@ -178,7 +183,7 @@ public:
             check_arity(1);
             double v = arg(0);
             if (v < 0.0) {
-                throw std::runtime_error("sqrt of negative number: sqrt(" + std::to_string(v) + ")");
+                throw std::runtime_error("sqrt of negative number: sqrt(" + format_double(v) + ")");
             }
             return std::sqrt(v);
         }
@@ -328,7 +333,7 @@ ScalarField1D make_scalar_field_1d(const std::string& expr_text, const Context& 
         double result = expr->eval(ctx);
         if (!std::isfinite(result)) {
             throw std::runtime_error(
-                "Expression evaluated to a non-finite value at x=" + std::to_string(x) +
+                "Expression evaluated to a non-finite value at x=" + format_double(x) +
                 " (check for division by zero, sqrt of a negative number, log of a "
                 "non-positive number, or a fractional power of a negative number)");
         }
@@ -357,7 +362,7 @@ ODEFunc make_ode_func(const std::vector<std::string>& expr_texts, const Context&
             result[i] = exprs[i]->eval(ctx);
             if (!std::isfinite(result[i])) {
                 throw std::runtime_error(
-                    "Expression evaluated to a non-finite value at t=" + std::to_string(t) +
+                    "Expression evaluated to a non-finite value at t=" + format_double(t) +
                     " (check for division by zero, sqrt of a negative number, log of a "
                     "non-positive number, or a fractional power of a negative number)");
             }
