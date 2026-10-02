@@ -1,0 +1,10 @@
+build/
+output/
+*.csv
+python/build/
+python/*.so
+python/*.pyd
+python/*.egg-info/
+__pycache__/
+.git/
+.vscode/
