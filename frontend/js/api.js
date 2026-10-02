@@ -4,7 +4,7 @@
 // No DOM access — testable in plain Node with a mocked global.fetch,
 // see tests/api.test.mjs.
 
-export const DEFAULT_BASE_URL = "http://localhost:8000";
+export const DEFAULT_BASE_URL = "";
 
 export async function postJSON(path, body, baseUrl = DEFAULT_BASE_URL) {
   const res = await fetch(`${baseUrl}${path}`, {
